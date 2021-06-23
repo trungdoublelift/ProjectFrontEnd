@@ -1,0 +1,159 @@
+<app-nav></app-nav>
+<div style="display: flex; flex-direction: row;background-color: #F8F8F8;">
+  <app-sidebar></app-sidebar>
+  <div style="margin:0 0 0 2%;width: 80%;">
+    <div class="infotable" >
+      <h1 id="tittle">Danh sách sinh viên</h1>
+      <div class="searchgroup">
+        <div class="input-group rounded" style="width: 50%; margin: 2% 0 0 5%;">
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="search-addon"
+            id="filtertext"
+            (input)="this.filter()"
+          />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="fas fa-search"></i>
+          </span>
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            id="addStudentbtn"
+              [routerLink]="'/add'">
+            Thêm sinh viên
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div id="table">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">ID sinh viên</th>
+                <th scope="col">Họ Tên</th>
+                <th scope="col">Email</th>
+                <th scope="col">Tình trạng</th>
+                <th scope="col">Chức năng</th>
+              </tr>
+            </thead>
+            <tbody
+              *ngFor="
+                let sinhvien of this.stuServ.studentList
+                  | paginate: { itemsPerPage: 5, currentPage: this.p }
+              "
+            >
+              <tr scope="row">
+                <th></th>
+                <td>{{ sinhvien.MSSV }}</td>
+                <td>{{ sinhvien.hoTen }}</td>
+                <td>{{ sinhvien.email }}</td>
+                <td *ngIf="sinhvien.status == false" id="ungraduated">
+                  <p class="text-danger">Chưa tốt nghiệp</p>
+                </td>
+                <td
+                  *ngIf="sinhvien.status == true"
+                  id="graduated"
+                  class="text-success"
+                >
+                  Đã tốt nghiệp
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm px-3"
+                    (click)="this.updateStudentInfo(sinhvien.idDoc)"
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-safe btn-sm px-3"
+                    (click)="this.getStudentInfo(sinhvien.idDoc)"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    Chi tiết
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm px-3"
+                    (click)="deleteSV(sinhvien.idDoc)"
+                    *ngIf="sinhvien.status == false"
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Thông tin sinh viên
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img
+                  src="{{ this.sinhvienInfo.pictureURL }}"
+                  class="img-fluid rounded"
+                  alt=""
+                  id="modalimage"
+                />
+                <h2>
+                  Họ tên:<b>{{ this.sinhvienInfo.hoTen }}</b>
+                </h2>
+
+                <p>MSSV:{{ this.sinhvienInfo.MSSV }}</p>
+                <p>Email:{{ this.sinhvienInfo.email }}</p>
+                <p *ngIf="this.sinhvienInfo.gender">Giới tính:Nam</p>
+                <p *ngIf="!this.sinhvienInfo.gender">Giới tính:Nữ</p>
+                <p>Ngày sinh:{{ this.sinhvienInfo.dob }}</p>
+                <p *ngIf="!this.sinhvienInfo.status">
+                  Tình trạng:<b class class="text-danger">Chưa tốt nghiệp</b>
+                </p>
+                <p *ngIf="this.sinhvienInfo.status">
+                  Tình trạng:<b class class="text-success">Đã tốt nghiệp</b>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

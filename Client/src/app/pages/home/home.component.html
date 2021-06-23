@@ -1,0 +1,134 @@
+<div id="body">
+  <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+      <div class="row d-flex">
+        <div class="col-lg-6">
+          <div class="card1 pb-5">
+            <div class="row">
+              <img src="https://i.imgur.com/CXQmsmF.png" class="logo" />
+            </div>
+            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
+              <img src="https://i.imgur.com/uNGdWHi.png" class="image" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card2 card border-0 px-4 py-5">
+            <div class="row mb-4 px-3">
+              <div class="col-md-12">
+                <a
+                  class="
+                    btn btn-lg btn-google btn-block
+                    text-uppercase
+                    btn-outline
+                  "     (click)="loginWithGoogle()"
+                  ><img
+                    src="https://img.icons8.com/color/16/000000/google-logo.png"
+                  />
+                  Signin Using Google</a
+                >
+              </div>
+            </div>
+            
+            <div class="row px-3 mb-4">
+              <div class="line"></div>
+              <small class="or text-center">Or</small>
+              <div class="line"></div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="this.signIn()">
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">Email Address</h6>
+              </label>
+              <input
+                class="mb-4"
+                type="text"
+                placeholder="Enter a valid email address"
+                formControlName="email"
+              />
+            </div>
+        
+            <div class="row px-3">
+              <label class="mb-1">
+                <h6 class="mb-0 text-sm">Password</h6>
+              </label>
+              <input
+                type="password"
+                placeholder="Enter password"
+                formControlName="password"
+              />
+            </div>
+            <div class="row px-3 mb-4">
+              <div
+                class="custom-control custom-checkbox custom-control-inline"
+              ></div>
+              <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
+            </div>
+            <div class="row mb-3 px-3">
+              <button
+                type="submit"
+                class="  btn btn-lg btn-primary btn-block">
+                Login
+              </button>
+            </div>
+          </form>
+            <div class="row mb-4 px-3">
+              <small class="font-weight-bold"
+                >Don't have an account?
+                <a class="text-danger"data-toggle="modal" data-target="#modalRegisterForm" >Register</a></small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue py-4">
+        <div class="row px-3">
+          <small class="ml-4 ml-sm-5 mb-2"
+            >Copyright &copy; 2019. All rights reserved.</small
+          >
+          <div class="social-contact ml-4 ml-sm-auto">
+            <span class="fa fa-facebook mr-4 text-sm"></span>
+            <span class="fa fa-google-plus mr-4 text-sm"></span>
+            <span class="fa fa-linkedin mr-4 text-sm"></span>
+            <span class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="email" class="form-control validate" formControlName="signUpemail">
+          <label data-error="wrong" data-success="right" for="orangeForm-email" >Your email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="password" class="form-control validate"formControlName="signUppassword">
+          <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button class="btn btn-deep-orange"  type="submit">Sign up</button>
+        </div>
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<app-nav></app-nav>
+
+<div class="body">
+  <div style="display: flex; flex-direction: row">
+    <app-sidebar></app-sidebar>
+    <form class="input-form" [formGroup]="addStudentForm">
+      <h1 id="tittle">Thêm sinh viên mới</h1>
+      <mat-form-field appearance="fill" class="inputbox">
+        <mat-label>Họ Tên SV</mat-label>
+        <input matInput placeholder="Nguyễn Văn A" formControlName="name" />
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="inputbox">
+        <mat-label>MSSV</mat-label>
+        <input matInput placeholder="0000000" formControlName="MSSV" />
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="inputbox">
+        <mat-label>Email SV</mat-label>
+        <input
+          matInput
+          placeholder="NguyenvanA@gmail.com"
+          formControlName="email"
+          type="email"
+        />
+        <mat-error></mat-error>
+      </mat-form-field>
+      <button type="button" class="btn btn-primary" (click)="this.addStudent()">
+        Thêm
+      </button>
+    </form>
+    
+  </div>
+  <app-footer></app-footer>
+</div>
+

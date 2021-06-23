@@ -1,0 +1,43 @@
+<app-nav></app-nav>
+<div class="body">
+  <form class="input-form" [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <h1 id="tittle">Cập nhật thông tin nhân viên</h1>
+    
+    <mat-form-field appearance="fill" class="inputbox">
+      <mat-label>Họ tên nhân viên</mat-label>
+      <input
+        value="{{ this.currentEmployee.name }}"
+        matInput
+        placeholder="Nguyễn Văn A"
+        id="hoTen"
+        formControlName="name"
+      />
+      <mat-error></mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="inputbox">
+      <mat-label>Chức vụ</mat-label>
+      <mat-select
+        formControlName="rank"
+      >
+      <mat-option [value]="'admin'">Người quản trị</mat-option>
+        <mat-option [value]="'employ'">Nhân viên</mat-option>
+        <mat-option [value]="'guest'">Khách</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="inputbox">
+      <mat-label>Lương</mat-label>
+      <input
+        value="{{ this.currentEmployee.salary }}"
+        matInput
+        placeholder="0000000"
+        id="MSSV"
+        formControlName="salary"
+      />
+      <mat-error></mat-error>
+    </mat-form-field>
+
+      <mat-error></mat-error>
+    <button type="submit" class="btn btn-primary">Cập nhật</button>
+  </form>
+</div>
+<app-footer></app-footer>

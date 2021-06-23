@@ -1,0 +1,29 @@
+#table{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin:2% 0 0 0%;
+    width: 100%;
+}
+.infotable{
+    margin-top: 10%;
+
+}
+#addStudentbtn{
+   left: 90%;
+}
+#searchgroup{
+    width: 50%;
+    display:flex;
+    flex-direction: row;
+
+}
+#tittle{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+#filtertext{
+    width: 2%;
+}
+.searchgroup{
+    width: 100%;
+}
